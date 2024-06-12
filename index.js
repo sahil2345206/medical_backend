@@ -4,13 +4,12 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-
 import userRoute from './routes/users.js';
 import authRoute from './routes/auth.js';
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT 
 
 // CORS options
 const corsOptions = {
@@ -19,7 +18,7 @@ const corsOptions = {
 };
 
 // Database connection
-mongoose.connect('mongodb://127.0.0.1:27017/medical', {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -27,7 +26,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/medical', {
     console.log('Connected to MongoDB');
 })
 .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
+    console.error('Error connecting to MongoDB:', error.message); 
 });
 
 // Middleware

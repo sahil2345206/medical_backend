@@ -3,31 +3,63 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken" 
 
 //User registration
+// export const register = async (req, res) => {
+//     try{
+//         // hashing the password
+//         const salt = bcrypt.genSaltSync(10)
+//         const hash = bcrypt.hashSync(req.body.password, salt)
+
+//         const newUser = new User({
+//             name: req.body.name,
+//             dob: req.body.dob,
+//             email: req.body.email,
+//             password: hash,  
+//             role: req.body.role,
+//             photo: req.body.photo,
+//         })
+    
+//         await newUser.save()
+
+//         res.status(200).json({
+//             success: true,
+//             message: "Successfully created"
+//         })
+//     }catch(err){
+//         res.status(500).json({
+//             success: false,
+//             message: "Failed to create. Try again"
+//         })
+//     }
+// }
 export const register = async (req, res) => {
-    try{
+    console.log("req.body", req.body)
+    debugger
+    try {
         // hashing the password
-        const salt = bcrypt.genSaltSync(10)
-        const hash = bcrypt.hashSync(req.body.password, salt)
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(req.body.password, salt);
 
         const newUser = new User({
             name: req.body.name,
             dob: req.body.dob,
             email: req.body.email,
-            password: hash,  
+            password: hash,
+            role: req.body.role,
             photo: req.body.photo,
-        })
-    
-        await newUser.save()
+        });
+
+        await newUser.save();
 
         res.status(200).json({
             success: true,
             message: "Successfully created"
-        })
-    }catch(err){
+        });
+    } catch (err) {
+        console.error('Error during user registration:', err); // Improved logging
         res.status(500).json({
             success: false,
             message: "Failed to create. Try again"
-        })
+        });
     }
 }
 
