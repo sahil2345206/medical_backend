@@ -15,7 +15,7 @@ const DB = 'mongodb+srv://sunidhibhagat13112002:zJ6Z5p7KoewFw1xv@cluster0.aw6mw7
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 4000;
+const port =5000;
 
 // CORS options
 const corsOptions = {
